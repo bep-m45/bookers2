@@ -1,2 +1,40 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<main>
+
+ <h2>User info</h2>
+
+  <!-- user-image -->
+
+  <div class="row">
+    <div class="col-xs-6">
+      <div class="user-edit-image">
+      <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg"%>
+      </div>
+    </div>
+  </div>
+
+  <! -- form_with -->
+   <% if @user.errors.any? %>
+    <h5><%= pluralize(@user.errors.count, "error") %> prohibited this product from being saved:</h5>
+      <div class="alert alert-warning">
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-xs-3">
+    <%= form_with model: @user, local: true do |f| %>
+        <label class="control-label sr-only" for="inputEmail">Image</label>
+          <p><%= f.attachment_field :profile_image, class: "user-edit-form" %></p>
+        <div class="user-info-name">Name</div>
+          <p><%= f.text_field :name, class:"form-control" %></p>
+        <div class="user-info-introduction">Introduction</div>
+          <p> <%= f.text_area :introduction, class:"form-control" %> </p>
+       <%= f.submit "Update User", class:"btn btn-lg  btn-base-1 mt-20" %>
+    <% end %>
+    </div>
+ </div>
+</main>

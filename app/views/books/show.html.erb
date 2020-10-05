@@ -1,0 +1,48 @@
+<main>
+<% flash.each do |message_type, message| %>
+<%= message %>
+<% end %>
+
+<div class="container">
+
+<!-- books -->
+<div class="row">
+   <div class="col-xs-3">
+     <%= render 'users/list', user: @user, book: @book_new %>
+   </div>
+   <div class="col-xs-9">
+   <div class="book">
+    <h2>Book detail</h2>
+     <table class="table" >
+      <thead>
+       <tr>
+        <th></th>
+        <th>Title</th>
+        <th>opinion</th>
+       </tr>
+      </thead>
+     <tbody>
+       <tr>
+        <td><p><%= attachment_image_tag @user, :profile_image, :fill, 20, 20, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %></p><br />
+        <p><%= link_to @book.user.name, user_path(@user.id) %></p></td>
+        <td><%= link_to @book.title, book_path(@book.id) %></td>
+        <td><%= @book.body %></td>
+        <td>
+               <% if @book.user == current_user %>
+               <button class="btn btn-success">
+                <%= link_to 'Edit', edit_book_path(@book.id) %>
+               </button>
+               <button class="btn btn-danger">
+                <%= link_to 'Destroy', book_path(@book.id), method: :delete %>
+               </button>
+               <% end %>
+
+        </td>
+       </tr>
+     </tbody>
+    </table>
+   </div>
+  </div>
+ </div>
+</main>
+

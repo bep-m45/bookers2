@@ -1,0 +1,73 @@
+ <!-- user info -->
+
+  <div class="user">
+    <div class="user-headline">
+        <h2>User info</h2>
+        <%= attachment_image_tag user, :profile_image, :fill, 50, 50, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+           <table class="table">
+               <thead>
+                <tr>
+                 <th></th>
+                 <th></th>
+                </tr>
+               </thead>
+             <tbody>
+              <tr>
+               <th>name</th>
+               <td><%= user.name %></td>
+              </tr>
+               <tr>
+               <th>introduction</th>
+              <td><%= user.introduction %></td>
+              </tr>
+             </tbody>
+          </table>
+        <div>
+          <% if user.id == current_user.id %>
+          <button type="button" class="text-center btn-light btn-lg btn-block" >
+          <%= link_to "", edit_user_path(user.id), class:  "glyphicon glyphicon-wrench"%>
+          </button>
+          <% else %>
+          <button type="button" class="text-center btn-light btn-lg btn-block" >
+          <%= link_to "", books_path, class:  "glyphicon glyphicon-wrench"%>
+          </button>
+          <% end %>
+        </div>
+    </div>
+</div>
+
+  <!-- new books -->
+
+  <% if book.errors.any? %>
+    <h5><%= pluralize(book.errors.count, "error") %> prohibited this product from being saved:</h5>
+      <div class="alert alert-warning">
+        <ul>
+          <% book.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+  <% end %>
+
+    <div class="new-book">
+        <h2>New book</h2>
+        <% if book.errors.any? %>
+        <h5><%= pluralize(book.errors.count, "error") %> prohibited this product from being saved:</h5>
+          <div class="alert alert-warning">
+            <ul>
+              <% book.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+       <% end %>
+    <!-- form_with -->
+
+       <%= form_for(book) do |f| %>
+         <div>Title</div>
+         <%= f.text_field :title %>
+         <div>Body</div>
+         <%= f.text_area :body %>
+         <div><%= f.submit 'Create Book' %></div>
+       <% end %>
+  </div>

@@ -1,0 +1,21 @@
+
+<% flash.each do |message_type, message| %>
+<%= message %>
+<% end %>
+
+<main>
+  <div class="top-main">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h1>welcome to <span class="glyphicon glyphicon-book" aria-hidden="true">Bookers !!</span></h1>
+           <p class="top-text"><h3>In  <span class="glyphicon glyphicon-book" aria-hidden="true">Bookers,</span></h3>
+            　you can share and exchange your opiions ,inpressios ,and emotions<br />
+            　abaut various books!
+          </p>
+
+          <div><button type="button" class="text-center btn-info btn-md  btn-md" ><%= link_to '　 Log in 　', new_user_session_path %></button></div>
+          <div><button type="button" class="text-center btn-success btn-md" ><%= link_to '　Sign up　', new_user_registration_path %></button></div>
+      </div>
+  　</div>
+  </div>
+</main>
