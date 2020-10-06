@@ -33,7 +33,7 @@
                 <%= link_to 'Edit', edit_book_path(@book.id) %>
                </button>
                <button class="btn btn-danger">
-                <%= link_to 'Destroy', book_path(@book.id), method: :delete %>
+                <%= link_to 'Destroy', book_path(@book.id), method: :delete, data: {confirm: "Are you sure?"} %>
                </button>
                <% end %>
 
@@ -45,4 +45,3 @@
   </div>
  </div>
 </main>
-
